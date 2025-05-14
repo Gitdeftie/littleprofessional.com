@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Professional | Solo Business Solutions</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--dark);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .cta-button {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('Image_fx.jpg') center/cover; /* Updated background image */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 5%;
+            position: relative; /* For potential creative positioning of text or elements */
+        }
+
+        .hero::before { /* Optional: Add an overlay for better text readability if needed */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.3); /* Adjust opacity as needed */
+            z-index: 1;
+        }
+
+        .hero > * { /* Ensure content is above the overlay */
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 5rem 5%;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Process Section */
+        .process {
+            padding: 5rem 5%;
+            background-color: #f1f5f9;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 250px;
+            margin: 0 1rem 2rem;
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        /* Case Studies */
+        .case-studies {
+            padding: 5rem 5%;
+        }
+        
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .case-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .case-img {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .case-content {
+            padding: 1.5rem;
+        }
+        
+        .case-content h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .case-tag {
+            display: inline-block;
+            background-color: #e2e8f0;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 5rem 5%;
+            background-color: #f1f5f9;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .pricing-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .pricing-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .pricing-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .pricing-features {
+            padding: 2rem;
+        }
+        
+        .pricing-features ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-features ul li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pricing-features ul li::before {
+            content: "✓";
+            display: inline-block;
+            color: var(--secondary);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 5rem 5%;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.2rem;
+        }
+        
+        .cta .cta-button {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .cta .cta-button:hover {
+            background-color: var(--light);
+        }
+        
+        /* Contact Form */
+        .contact {
+            padding: 5rem 5%;
+        }
+        
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            padding: 2rem;
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info p {
+            margin-bottom: 1rem;
+        }
+        
+        .contact-form {
+            flex: 2;
+            min-width: 400px;
+            padding: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 5% 1rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #475569;
+            color: #94a3b8;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Little<span>Professional</span></div>
+        <nav>
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#case-studies">Case Studies</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="#contact" class="cta-button">Get Started</a>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Your Dedicated Solo Business Professional</h1>
+        <p>Providing expert solutions tailored to your unique business needs. Let's streamline your operations and boost your success.</p>
+        <a href="#contact" class="cta-button">Schedule a Consultation</a>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-title">
+            <h2>Our Solutions</h2>
+            <p>We create custom applications and automations tailored to your specific business needs.</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card" data-aos="fade-up">
+                <div class="service-icon">💻</div>
+                <h3>Custom Web Applications</h3>
+                <p>Replace spreadsheet chaos with intuitive, powerful web applications designed specifically for your workflows.</p>
+            </div>
+            
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-icon">📱</div>
+                <h3>Mobile Solutions</h3>
+                <p>Empower your field workforce with mobile apps that connect seamlessly to your business systems.</p>
+            </div>
+            
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-icon">⚙️</div>
+                <h3>Workflow Automation</h3>
+                <p>Eliminate repetitive tasks and reduce errors by automating your business processes end-to-end.</p>
+            </div>
+            
+            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-icon">🔄</div>
+                <h3>System Integration</h3>
+                <p>Connect your existing software tools to create a unified ecosystem that shares data seamlessly.</p>
+            </div>
+            
+            <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="service-icon">📊</div>
+                <h3>Custom Dashboards</h3>
+                <p>Gain actionable insights with real-time dashboards that visualize your most important metrics.</p>
+            </div>
+            
+            <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="service-icon">🤖</div>
+                <h3>AI-Powered Solutions</h3>
+                <p>Leverage artificial intelligence to automate complex decisions and unlock new business capabilities.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="section-title">
+            <h2>Our Process</h2>
+            <p>We follow a proven methodology to ensure your project delivers maximum value.</p>
+        </div>
+        
+        <div class="process-steps">
+            <div class="step" data-aos="fade-right">
+                <div class="step-number">1</div>
+                <h3>Discovery</h3>
+                <p>We learn about your business processes, pain points, and objectives through in-depth consultation.</p>
+            </div>
+            
+            <div class="step" data-aos="fade-right" data-aos-delay="100">
+                <div class="step-number">2</div>
+                <h3>Solution Design</h3>
+                <p>We create a tailored solution blueprint that addresses your specific needs and challenges.</p>
+            </div>
+            
+            <div class="step" data-aos="fade-right" data-aos-delay="200">
+                <div class="step-number">3</div>
+                <h3>Development</h3>
+                <p>We build your solution using modern technologies, with regular updates and demonstrations.</p>
+            </div>
+            
+            <div class="step" data-aos="fade-right" data-aos-delay="300">
+                <div class="step-number">4</div>
+                <h3>Implementation</h3>
+                <p>We deploy your solution, provide training, and ensure smooth adoption across your team.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Case Studies -->
+    <section class="case-studies" id="case-studies">
+        <div class="section-title">
+            <h2>Success Stories</h2>
+            <p>See how we've helped businesses like yours transform their operations.</p>
+        </div>
+        
+        <div class="cases-grid">
+            <div class="case-card" data-aos="zoom-in">
+                <div class="case-img" style="background-image: url('/api/placeholder/400/200')"></div>
+                <div class="case-content">
+                    <span class="case-tag">Service Business</span>
+                    <span class="case-tag">Scheduling</span>
+                    <h3>Automated Scheduling System for Local Plumbing Company</h3>
+                    <p>Replaced paper-based scheduling with a custom app, reducing booking errors by 95% and saving 15 hours per week in administrative time.</p>
+                </div>
+            </div>
+            
+            <div class="case-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="case-img" style="background-image: url('/api/placeholder/400/200')"></div>
+                <div class="case-content">
+                    <span class="case-tag">Manufacturing</span>
+                    <span class="case-tag">Inventory</span>
+                    <h3>Inventory Management System for Small Manufacturer</h3>
+                    <p>Created a barcode-based inventory system that integrated with existing accounting software, reducing stockouts by 80% and improving cash flow.</p>
+                </div>
+            </div>
+            
+            <div class="case-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="case-img" style="background-image: url('/api/placeholder/400/200')"></div>
+                <div class="case-content">
+                    <span class="case-tag">Real Estate</span>
+                    <span class="case-tag">Lead Management</span>
+                    <h3>Automated Lead Qualification for Real Estate Agency</h3>
+                    <p>Built a custom CRM that automatically qualifies leads and assigns them to agents, increasing conversion rates by 35%.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="section-title">
+            <h2>Investment Options</h2>
+            <p>Flexible pricing structures to match your business needs and budget.</p>
+        </div>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card" data-aos="flip-left">
+                <div class="pricing-header">
+                    <h3>Project-Based</h3>
+                    <p>For specific solutions with clear requirements</p>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Custom application development</li>
+                        <li>Fixed scope and timeline</li>
+                        <li>Transparent milestone-based pricing</li>
+                        <li>Clear deliverables</li>
+                        <li>30-day support included</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" style="display: block; text-align: center;">Request Quote</a>
+                </div>
+            </div>
+            
+            <div class="pricing-card" data-aos="flip-left" data-aos-delay="100">
+                <div class="pricing-header">
+                    <h3>Monthly Retainer</h3>
+                    <p>For ongoing development and support</p>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Continuous improvement of your systems</li>
+                        <li>Priority support and maintenance</li>
+                        <li>Regular feature additions</li>
+                        <li>Monthly consulting sessions</li>
+                        <li>Flexible allocation of development hours</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" style="display: block; text-align: center;">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="pricing-card" data-aos="flip-left" data-aos-delay="200">
+                <div class="pricing-header">
+                    <h3>Consultation Package</h3>
+                    <p>For businesses exploring automation options</p>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Process analysis and mapping</li>
+                        <li>Technology stack recommendations</li>
+                        <li>ROI calculation for potential solutions</li>
+                        <li>Written report with action plan</li>
+                        <li>Implementation roadmap</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" style="display: block; text-align: center;">Book Consultation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Ready to Transform Your Business?</h2>
+        <p>Schedule a free 30-minute discovery call to discuss how custom automation can streamline your operations and boost your bottom line.</p>
+        <a href="#contact" class="cta-button">Schedule Your Call Now</a>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-title">
+            <h2>Get In Touch</h2>
+            <p>Tell us about your business challenges, and we'll explore how we can help.</p>
+        </div>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <p>We typically respond within 24 hours to all inquiries.</p>
+                <p>Email: hello@littleprofessional.com</p>
+                <p>Phone: (555) 123-4567</p>
+                <p>Based in: [Your Location]</p>
+            </div>
+            
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" placeholder="Full Name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="your@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Company Name</label>
+                        <input type="text" id="company" placeholder="Your Company">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">I'm Interested In</label>
+                        <select id="service">
+                            <option value="">Select a Service</option>
+                            <option value="web-app">Custom Web Application</option>
+                            <option value="mobile-app">Mobile App</option>
+                            <option value="automation">Process Automation</option>
+                            <option value="integration">System Integration</option>
+                            <option value="dashboard">Custom Dashboard</option>
+                            <option value="consultation">Consultation Only</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Tell Us About Your Project</label>
+                        <textarea id="message" placeholder="Describe your business challenge or project idea..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Little Professional</h3>
+                <p>Dedicated to providing expert solutions for solo business professionals.</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#services">Custom Applications</a></li>
+                    <li><a href="#services">Mobile Solutions</a></li>
+                    <li><a href="#services">Workflow Automation</a></li>
+                    <li><a href="#services">System Integration</a></li>
+                    <li><a href="#services">Custom Dashboards</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#case-studies">Case Studies</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Client Resources</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Little Professional. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+        });
+    </script>
+</body>
+</html>
